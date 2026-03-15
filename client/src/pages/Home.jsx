@@ -77,19 +77,19 @@ const SOCIAL_LINKS = [
     label: "GitHub",
     href: "https://github.com/alexkovacs",
     icon: <GitHubIcon size={26} />,
-    color: "#e2e8f0",
+    color: "#0b0b0b",
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/alexkovacs",
+    href: "https://linkedin.com/in/prashant-goit",
     icon: <LinkedInIcon size={26} />,
     color: "#0a66c2",
   },
   {
     label: "Email",
-    href: "mailto:alex@kovacs.dev",
+    href: "mailto:sah319789@gmail.com",
     icon: <EmailIcon size={26} />,
-    color: "#00d4ff",
+    color: "#fa3232",
   },
 ];
 
@@ -165,7 +165,7 @@ function Hero() {
             <div style={{ position: "absolute", inset: -8, borderRadius: "50%", border: "1px solid rgba(124,58,237,0.15)", borderRightColor: "var(--purple)", animation: "spin 8s linear infinite reverse" }} />
             <div style={{ width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", border: "2px solid rgba(0,212,255,0.25)" }}>
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+                src="./src/assets/pp.jpeg"
                 alt="Profile"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
@@ -395,7 +395,7 @@ export default function Home() {
       <footer className="footer-inner" style={{ padding: "2rem 4rem", borderTop: "1px solid var(--border)", textAlign: "center", fontSize: "0.75rem", letterSpacing: "0.04em", fontWeight: 500 }}>
         <span className="text-dim">crafted with </span>
         <span className="text-gradient">precision</span>
-        <span className="text-dim"> by Alex Kovacs</span>
+        <span className="text-dim"> by Prashant Goit</span>
       </footer>
     </>
   );
