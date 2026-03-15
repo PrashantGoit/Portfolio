@@ -75,7 +75,7 @@ const LinkedInIcon = ({ size = 26 }) => (
 const SOCIAL_LINKS = [
   {
     label: "GitHub",
-    href: "https://github.com/alexkovacs",
+    href: "https://github.com/PrashantGoit",
     icon: <GitHubIcon size={26} />,
     color: "var(--github-icon)",
   },
@@ -308,7 +308,7 @@ function Projects() {
         <div className={`fade-up ${inView ? "visible" : ""}`}>
           <div className="section-label">02 — Projects</div>
           <div className="section-title">
-            Things I&apos;ve<br /><span className="text-gradient">shipped</span>
+            Things I&apos;ve<br /><span className="text-gradient">Built</span>
           </div>
         </div>
         <div className="projects-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem" }}>
