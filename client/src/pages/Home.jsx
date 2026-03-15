@@ -77,7 +77,7 @@ const SOCIAL_LINKS = [
     label: "GitHub",
     href: "https://github.com/alexkovacs",
     icon: <GitHubIcon size={26} />,
-    color: "#0b0b0b",
+    color: "var(--github-icon)",
   },
   {
     label: "LinkedIn",

@@ -13,6 +13,7 @@
   --purple:    #7c3aed;
   --blue-glow: rgba(0,212,255,0.15);
   --input-bg:  #070b12;
+  --github-icon: #ffffff;
 }
 
 [data-theme="light"] {
@@ -27,6 +28,7 @@
   --purple:    #7c3aed;
   --blue-glow: rgba(2,132,199,0.12);
   --input-bg:  #f8fafc;
+  --github-icon: #000000;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
