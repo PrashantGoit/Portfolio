@@ -70,7 +70,7 @@ export default function Navbar() {
       }}>
         <Link to="/" onClick={closeMenu} style={{ textDecoration: "none", fontFamily: "Inter, sans-serif", fontSize: "1rem", fontWeight: 800 }}>
           <span style={{ color: "var(--blue)" }}>&lt;</span>
-          <span style={{ color: "var(--text)" }}>PG</span>
+          <span style={{ color: theme === "light" && scrolled ? "#ffffff" : "var(--text)" }}>PG</span>
           <span style={{ color: "var(--blue)" }}>/&gt;</span>
         </Link>
 
