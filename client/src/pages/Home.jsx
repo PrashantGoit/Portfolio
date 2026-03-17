@@ -5,21 +5,18 @@ import ContactForm from "../components/ContactForm";
 // ── Tech icons via Simple Icons CDN ──────────────────────────────────────
 // Map tag name → Simple Icons slug (used in img src)
 const ICON_MAP = {
-  Rust:        { slug: "rust",        color: "#CE422B" },
-  Python:      { slug: "python",      color: "#3776AB" },
-  gRPC:        { slug: "grpc",        color: "#244c5a" },
-  React:       { slug: "react",       color: "#61DAFB" },
-  TypeScript:  { slug: "typescript",  color: "#3178C6" },
-  IndexedDB:   { slug: "indexeddb",   color: "#7c3aed" },
-  Go:          { slug: "go",          color: "#00ADD8" },
-  Kafka:       { slug: "apachekafka", color: "#231F20" },
-  Redis:       { slug: "redis",       color: "#FF4438" },
-  WebGL:       { slug: "webgl",       color: "#990000" },
-  GLSL:        { slug: "opengl",      color: "#5586A4" },
-  MapboxGL:    { slug: "mapbox",      color: "#000000" },
-  Cryptography:{ slug: "gnuprivacyguard", color: "#0093DD" },
-  P2P:         { slug: "torproject",  color: "#7D4698" },
-  PyTorch:     { slug: "pytorch",     color: "#EE4C2C" }
+  Python:      { slug: "python", color: "#3776AB" },
+  TensorFlow:  { slug: "tensorflow", color: "#FF6F00" },
+  React:       { slug: "react", color: "#61DAFB" },
+  "Next.js":   { slug: "nextdotjs", color: "#000000" },
+
+  HTML:        { slug: "html5", color: "#E34F26" },
+  CSS:         { slug: "css", color: "#7ba4e6" },
+  JavaScript:  { slug: "javascript", color: "#F7DF1E" },
+
+  MongoDB:     { slug: "mongodb", color: "#47A248" },
+  Express:     { slug: "express", color: "#b6b3b3" },
+  "Node.js":     { slug: "nodedotjs", color: "#339933" }
 };
 
 function TechTag({ name, accentColor }) {
@@ -98,7 +95,7 @@ const PROJECTS = [
     desc: "AI-powered web application that detects brain tumors from MRI scans using deep learning models. Provides quick predictions through an intuitive web interface.",
     tags: ["Python", "TensorFlow", "React", "Next.js"],
     color: "#00d4ff",
-    img: "https://images.unsplash.com/photo-1581093588401-22f3c0c4e7a6?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1737505599159-5ffc1dcbc08f?w=600&q=80",
     demo: "https://brain-tumour-detection-bay.vercel.app/",
     source: "https://github.com/PrashantGoit/Brain-tumour-detection.git"
   },
@@ -107,7 +104,7 @@ const PROJECTS = [
     desc: "Frontend clone of Netflix featuring responsive UI, movie listings, banners, and dynamic components built with modern web technologies.",
     tags: ["HTML", "CSS", "JavaScript", "React"],
     color: "#e50914",
-    img: "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1616469829941-c7200edec809?w=600&q=80",
     demo: "https://netflix-clone-goitprashant.vercel.app/",
     source: "https://github.com/PrashantGoit/Netflix-Clone.git"
   },
@@ -116,7 +113,7 @@ const PROJECTS = [
     desc: "Full-stack ecommerce web application with product catalog, shopping cart, authentication, and payment integration.",
     tags: ["MongoDB", "Express", "React", "Node.js"],
     color: "#10b981",
-    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80",
+    img: "https://plus.unsplash.com/premium_photo-1681488262364-8aeb1b6aac56?w=600&q=80",
     demo: "https://ecommerce-lac-one-94.vercel.app/",
     source: "https://github.com/PrashantGoit/Ecommerce.git"
   }
