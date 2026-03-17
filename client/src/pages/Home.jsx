@@ -19,9 +19,7 @@ const ICON_MAP = {
   MapboxGL:    { slug: "mapbox",      color: "#000000" },
   Cryptography:{ slug: "gnuprivacyguard", color: "#0093DD" },
   P2P:         { slug: "torproject",  color: "#7D4698" },
-  PyTorch:     { slug: "pytorch",     color: "#EE4C2C" },
-  FastAPI:     { slug: "fastapi",     color: "#009688" },
-  WASM:        { slug: "webassembly", color: "#654FF0" },
+  PyTorch:     { slug: "pytorch",     color: "#EE4C2C" }
 };
 
 function TechTag({ name, accentColor }) {
@@ -95,12 +93,33 @@ const SOCIAL_LINKS = [
 
 // ── Data ──────────────────────────────────────────────────────────────────
 const PROJECTS = [
-  { title: "NeuralDB", desc: "A vector database with semantic search on HNSW graphs. 10M+ embeddings, sub-10ms queries.", tags: ["Rust", "Python", "gRPC", "WASM"], color: "#00d4ff", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80", demo: "#", source: "#" },
-  { title: "Spectral OS", desc: "Browser-based OS simulation with real terminal, file system, and app ecosystem.", tags: ["React", "TypeScript", "IndexedDB"], color: "#7c3aed", img: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&q=80", demo: "#", source: "#" },
-  { title: "FluxPay", desc: "Real-time payment infra with fraud-detection ML pipeline. $2M daily volume.", tags: ["Go", "Kafka", "Redis"], color: "#06b6d4", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", demo: "#", source: "#" },
-  { title: "Cartographer", desc: "Open-source WebGL mapping library rendering geospatial data at 60fps on mobile.", tags: ["WebGL", "GLSL", "TypeScript"], color: "#10b981", img: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&q=80", demo: "#", source: "#" },
-  { title: "Cipher CLI", desc: "End-to-end encrypted messaging CLI using Noise Protocol with perfect forward secrecy.", tags: ["Rust", "Cryptography", "P2P"], color: "#f59e0b", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80", demo: "#", source: "#" },
-  { title: "Resonance", desc: "AI-powered music production assistant generating stems from natural language prompts.", tags: ["Python", "PyTorch", "React"], color: "#ec4899", img: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=600&q=80", demo: "#", source: "#" },
+  {
+    title: "Brain Tumor Detection",
+    desc: "AI-powered web application that detects brain tumors from MRI scans using deep learning models. Provides quick predictions through an intuitive web interface.",
+    tags: ["Python", "TensorFlow", "React", "Next.js"],
+    color: "#00d4ff",
+    img: "https://images.unsplash.com/photo-1581093588401-22f3c0c4e7a6?w=600&q=80",
+    demo: "https://brain-tumour-detection-bay.vercel.app/",
+    source: "https://github.com/PrashantGoit/Brain-tumour-detection.git"
+  },
+  {
+    title: "Netflix Clone",
+    desc: "Frontend clone of Netflix featuring responsive UI, movie listings, banners, and dynamic components built with modern web technologies.",
+    tags: ["HTML", "CSS", "JavaScript", "React"],
+    color: "#e50914",
+    img: "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=600&q=80",
+    demo: "https://netflix-clone-goitprashant.vercel.app/",
+    source: "https://github.com/PrashantGoit/Netflix-Clone.git"
+  },
+  {
+    title: "Ecommerce Platform",
+    desc: "Full-stack ecommerce web application with product catalog, shopping cart, authentication, and payment integration.",
+    tags: ["MongoDB", "Express", "React", "Node.js"],
+    color: "#10b981",
+    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80",
+    demo: "https://ecommerce-lac-one-94.vercel.app/",
+    source: "https://github.com/PrashantGoit/Ecommerce.git"
+  }
 ];
 
 const SKILLS = [
