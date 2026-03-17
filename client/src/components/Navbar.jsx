@@ -119,7 +119,7 @@ export default function Navbar() {
         <div className="nav-mobile-menu" onClick={closeMenu}>
           {NAV_ITEMS.map(({ label, href }) => (
             <a key={label} href={href} onClick={closeMenu}>
-              <span style={{ color: "var(--blue)", opacity: 0.6, fontWeight: 400 }}>./</span>{label}
+              <span style={{ color: "var(--blue)", opacity: 0.6, fontWeight: 400 }}></span>{label}
             </a>
           ))}
         </div>
