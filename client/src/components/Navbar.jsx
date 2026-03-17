@@ -63,14 +63,19 @@ export default function Navbar() {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: isMobile ? "1.1rem 1.25rem" : "1.4rem 4rem",
-        background: scrolled || menuOpen ? "rgba(7,11,18,0.95)" : "transparent",
+        background:
+  scrolled || menuOpen
+    ? theme === "light"
+      ? "rgba(255,255,255,0.95)"
+      : "rgba(7,11,18,0.95)"
+    : "transparent",
         backdropFilter: scrolled || menuOpen ? "blur(16px)" : "none",
         borderBottom: scrolled || menuOpen ? "1px solid var(--border)" : "1px solid transparent",
         transition: "padding 0.3s, background 0.3s, border-color 0.3s",
       }}>
         <Link to="/" onClick={closeMenu} style={{ textDecoration: "none", fontFamily: "Inter, sans-serif", fontSize: "1rem", fontWeight: 800 }}>
           <span style={{ color: "var(--blue)" }}>&lt;</span>
-          <span style={{ color: theme === "light" && scrolled ? "#ffffff" : "var(--text)" }}>PG</span>
+          <span style={{ color: "var(--text)" }}>PG</span>
           <span style={{ color: "var(--blue)" }}>/&gt;</span>
         </Link>
 
