@@ -82,7 +82,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: "Email",
-    href: "mailto:sah319789@gmail.com",
+    href: "mailto:Itsprashantgoit@gmail.com",
     icon: <EmailIcon size={26} />,
     color: "#fa3232",
   },
