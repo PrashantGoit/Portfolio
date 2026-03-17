@@ -181,7 +181,7 @@ function Hero() {
             <div style={{ position: "absolute", inset: -8, borderRadius: "50%", border: "1px solid rgba(124,58,237,0.15)", borderRightColor: "var(--purple)", animation: "spin 8s linear infinite reverse" }} />
             <div style={{ width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", border: "2px solid rgba(0,212,255,0.25)" }}>
               <img
-                src="./src/assets/pp.jpeg"
+                src="./pp.jpeg"
                 alt="Profile"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
