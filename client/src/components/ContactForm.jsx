@@ -27,35 +27,50 @@ export default function ContactForm() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate(form);
-    if (Object.keys(validationErrors).length) {
-      setErrors(validationErrors);
-      return;
-    }
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    setStatus("loading");
-    setServerError("");
+  const validationErrors = validate(form);
+  if (Object.keys(validationErrors).length) {
+    setErrors(validationErrors);
+    return;
+  }
 
-    try {
-      await contactAPI.submit(form);
-      setStatus("success");
-      setForm(INITIAL);
-      // Reset to idle after 4 seconds
-      setTimeout(() => setStatus("idle"), 4000);
-    } catch (err) {
-      setStatus("error");
-      if (err.response?.data?.errors) {
-        setErrors(err.response.data.errors);
-        setStatus("idle");
-      } else {
-        setServerError(
-          err.response?.data?.error || "Something went wrong. Please try again."
-        );
-      }
+  // 🧠 Confirmation BEFORE sending
+  const confirmSend = window.confirm(
+    "To prevent spam, you can send a message only once every 15 minutes.\nDo you want to continue?"
+  );
+
+  if (!confirmSend) return; // ❌ Stop if user cancels
+
+  setStatus("loading");
+  setServerError("");
+
+  try {
+    await contactAPI.submit(form);
+
+    setStatus("success");
+    setForm(INITIAL);
+
+    // 🧠 Optional: store last sent time (for smarter UX later)
+    localStorage.setItem("lastSent", Date.now());
+
+    // Reset to idle after 4 seconds
+    setTimeout(() => setStatus("idle"), 4000);
+
+  } catch (err) {
+    setStatus("error");
+
+    if (err.response?.data?.errors) {
+      setErrors(err.response.data.errors);
+      setStatus("idle");
+    } else {
+      setServerError(
+        err.response?.data?.error || "Something went wrong. Please try again."
+      );
     }
-  };
+  }
+};
 
   if (status === "success") {
     return (
