@@ -14,6 +14,25 @@ function validate(form) {
   return errors;
 }
 
+function getErrorText(value) {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object" && typeof value.message === "string") {
+    return value.message;
+  }
+  return "";
+}
+
+function normalizeFieldErrors(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+
+  const entries = Object.entries(value).map(([key, message]) => [
+    key,
+    getErrorText(message) || "Invalid value.",
+  ]);
+
+  return Object.fromEntries(entries);
+}
+
 export default function ContactForm() {
   const [form, setForm] = useState(INITIAL);
   const [errors, setErrors] = useState({});
@@ -27,7 +46,7 @@ export default function ContactForm() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
   const validationErrors = validate(form);
@@ -59,14 +78,19 @@ export default function ContactForm() {
     setTimeout(() => setStatus("idle"), 4000);
 
   } catch (err) {
-    setStatus("error");
+    const fieldErrors = normalizeFieldErrors(err.response?.data?.errors);
 
-    if (err.response?.data?.errors) {
-      setErrors(err.response.data.errors);
+    if (fieldErrors && Object.keys(fieldErrors).length) {
+      setStatus("error");
+      setErrors(fieldErrors);
       setStatus("idle");
     } else {
+      setStatus("idle");
       setServerError(
-        err.response?.data?.error || "Something went wrong. Please try again."
+        getErrorText(err.response?.data?.error) ||
+          getErrorText(err.response?.data?.message) ||
+          getErrorText(err) ||
+          "Something went wrong. Please try again."
       );
     }
   }
