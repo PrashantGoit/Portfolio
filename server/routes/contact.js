@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Contact = require("../models/Contact");
 const adminAuth = require("../middleware/adminAuth");
+const contactRateLimit = require("../middleware/contactRateLimit");
 const { sendContactEmail } = require("../config/mailer");
 
 // ── Validation helper ─────────────────────────────────────────────────────
@@ -15,7 +16,7 @@ const validate = ({ name, email, message }) => {
 
 // ── POST /api/contact ─────────────────────────────────────────────────────
 // Public: Submit a contact message
-router.post("/", async (req, res) => {
+router.post("/", contactRateLimit, async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
@@ -23,18 +24,6 @@ router.post("/", async (req, res) => {
     const errors = validate({ name, email, message });
     if (Object.keys(errors).length) {
       return res.status(422).json({ errors });
-    }
-
-    // Basic rate-limit: one message per email every 15 minutes
-    const fifteenMinutesAgo = new Date(Date.now() - 15 * 60 * 1000);
-    const recent = await Contact.findOne({
-      email: email.toLowerCase(),
-      createdAt: { $gte: fifteenMinutesAgo },
-    });
-    if (recent) {
-      return res.status(429).json({
-        error: "Please wait 15 minutes before sending another message.",
-      });
     }
 
     // Save to DB

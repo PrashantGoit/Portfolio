@@ -25,11 +25,12 @@ const contactSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // adds createdAt + updatedAt automatically
+    timestamps: { createdAt: true, updatedAt: false },
+    versionKey: false,
   }
 );
 
-// Prevent spam: one email per 15 minutes (checked in route, not model)
-contactSchema.index({ email: 1, createdAt: -1 });
+// Auto-delete contact messages after 7 days to keep the collection small.
+contactSchema.index({ createdAt: 1 }, { expireAfterSeconds: 7 * 24 * 60 * 60 });
 
 module.exports = mongoose.model("Contact", contactSchema);

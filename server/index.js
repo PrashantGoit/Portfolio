@@ -8,6 +8,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const usingOnboardingSender = (process.env.EMAIL_FROM || "").includes("onboarding@resend.dev");
 
+app.disable("x-powered-by");
+app.set("trust proxy", process.env.NODE_ENV === "production" ? 1 : false);
+
 if (!process.env.RESEND_API_KEY) {
   console.warn("[Email] RESEND_API_KEY is not set. Contact emails will not be sent.");
 }
@@ -31,7 +34,7 @@ app.use(cors({
   methods: ["GET", "POST", "DELETE"],
   credentials: true,
 }));
-app.use(express.json());
+app.use(express.json({ limit: "10kb" }));
 
 // ── Routes ────────────────────────────────────────────────────────────────
 app.use("/api/contact", contactRoutes);

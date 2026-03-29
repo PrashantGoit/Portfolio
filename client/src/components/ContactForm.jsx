@@ -57,7 +57,7 @@ const handleSubmit = async (e) => {
 
   // 🧠 Confirmation BEFORE sending
   const confirmSend = window.confirm(
-    "To prevent spam, you can send a message only once every 15 minutes.\nDo you want to continue?"
+    "To prevent spam, you can send up to 3 messages every 15 minutes.\nDo you want to continue?"
   );
 
   if (!confirmSend) return; // ❌ Stop if user cancels
