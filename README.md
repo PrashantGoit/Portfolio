@@ -17,7 +17,7 @@ mern-portfolio/
 │   ├── .env.example        ← copy → .env and fill in values
 │   ├── config/
 │   │   ├── db.js           ← MongoDB Atlas connection
-│   │   └── mailer.js       ← Nodemailer (Gmail)
+│   │   └── mailer.js       ← Resend email notifications
 │   ├── models/
 │   │   └── Contact.js      ← Mongoose schema
 │   ├── middleware/
@@ -82,8 +82,8 @@ npm run dev
 |---------------|--------------------------------------------------|
 | `PORT`        | Express port (default: 5000)                     |
 | `MONGO_URI`   | MongoDB Atlas connection string                  |
-| `EMAIL_USER`  | Gmail address for sending notifications          |
-| `EMAIL_PASS`  | Gmail App Password (not your real password)      |
+| `RESEND_API_KEY` | Resend API key for sending notifications      |
+| `EMAIL_FROM`  | Verified Resend sender, e.g. `Portfolio Contact <onboarding@resend.dev>` |
 | `EMAIL_TO`    | Where to deliver contact notifications           |
 | `ADMIN_TOKEN` | Secret string to protect `/admin` route          |
 | `CLIENT_URL`  | Frontend URL for CORS (e.g. https://yourdomain.com) |
@@ -93,11 +93,11 @@ npm run dev
 openssl rand -hex 32
 ```
 
-**Setting up Gmail App Password:**
-1. Enable 2FA on your Google account
-2. Go to myaccount.google.com/apppasswords
-3. Create an app password for "Mail"
-4. Use that 16-char password as `EMAIL_PASS`
+**Setting up Resend:**
+1. Sign up at [resend.com](https://resend.com)
+2. Create an API key under **API Keys**
+3. Add and verify a sender domain, or use `onboarding@resend.dev` for testing
+4. Set `RESEND_API_KEY` and `EMAIL_FROM` in `server/.env` or in Render's environment variables dashboard
 
 ---
 
@@ -152,7 +152,7 @@ The Navbar includes a ☀/☽ toggle. Theme preference is persisted to `localSto
 3. **Root Directory:** `server`
 4. **Build Command:** `npm install`
 5. **Start Command:** `node index.js`
-6. Add all environment variables from `.env` in the Render dashboard
+6. Add all environment variables from `.env` in the Render dashboard, including `RESEND_API_KEY`, `EMAIL_FROM`, and `EMAIL_TO`
 7. Note your backend URL: `https://your-api.onrender.com`
 
 ### Step 3 — Deploy Frontend on Render (or Vercel/Netlify)
@@ -185,4 +185,4 @@ CLIENT_URL=https://your-frontend.onrender.com
 - Vite proxies `/api/*` requests to `http://localhost:5000` automatically — no CORS issues in dev
 - Backend validates all inputs server-side (don't rely on frontend-only validation)
 - Rate limiting: one submission per email per 15 minutes (enforced in route handler)
-- Nodemailer silently skips sending if `EMAIL_USER`/`EMAIL_PASS` aren't set (safe for dev)
+- Contact messages are still saved even if Resend email delivery fails; the server logs a warning instead of returning a 500

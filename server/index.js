@@ -6,6 +6,21 @@ const contactRoutes = require("./routes/contact");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const usingOnboardingSender = (process.env.EMAIL_FROM || "").includes("onboarding@resend.dev");
+
+if (!process.env.RESEND_API_KEY) {
+  console.warn("[Email] RESEND_API_KEY is not set. Contact emails will not be sent.");
+}
+
+if (!process.env.EMAIL_TO) {
+  console.warn("[Email] EMAIL_TO is not set. Contact emails have no destination.");
+}
+
+if (usingOnboardingSender) {
+  console.warn(
+    "[Email] EMAIL_FROM is using Resend's onboarding sender. This only delivers to your Resend account email until you verify a sending domain."
+  );
+}
 
 // ── Connect Database ──────────────────────────────────────────────────────
 connectDB();

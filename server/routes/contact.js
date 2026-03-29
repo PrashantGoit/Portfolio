@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Contact = require("../models/Contact");
 const adminAuth = require("../middleware/adminAuth");
-const { sendContactNotification } = require("../config/mailer");
+const { sendContactEmail } = require("../config/mailer");
 
 // ── Validation helper ─────────────────────────────────────────────────────
 const validate = ({ name, email, message }) => {
@@ -40,10 +40,14 @@ router.post("/", async (req, res) => {
     // Save to DB
     const contact = await Contact.create({ name, email, message });
 
-    // Fire-and-forget email notification (don't block response on it)
-    sendContactNotification({ name, email, message }).catch((err) =>
-      console.error("Email send failed:", err.message)
-    );
+    // Fire-and-forget email notification without affecting the API response.
+    (async () => {
+      try {
+        await sendContactEmail({ name, email, message });
+      } catch (err) {
+        console.warn("Contact saved, but email notification failed:", err.message);
+      }
+    })();
 
     res.status(201).json({
       message: "Message received! I'll get back to you soon.",
